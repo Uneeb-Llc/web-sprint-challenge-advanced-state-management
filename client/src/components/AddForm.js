@@ -1,17 +1,74 @@
 import React from 'react';
 
 class AddForm extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            name: "",
+            position: "",
+            nickName: "",
+            description: ""
+        }
+    }
+
+    handleChange = (e) => {
+        console.log(e.target.name, e.target.value)
+       this.setState({[e.target.name] : e.target.value})
+        
+    }
+
+    submitItem = e => {
+        e.preventDefault();
+    }
 
     render() {
         return(<section>
             <h2>Add Smurf</h2>
-            <form>
+            <form onSubmit={this.submitItem}>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
-                    <input onChange={this.handleChange} name="name" id="name" />
+                    <input 
+                    type="text"
+                    onChange={this.handleChange} 
+                    name="name" 
+                    id="name" 
+                    value={this.state.name}  
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="position">Position:</label><br/>
+                    <input 
+                     onChange={this.handleChange}
+                     name="position" 
+                     id="position" 
+                     value={this.state.position}
+                     />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="nickName">Nick Name:</label><br/>
+                    <input 
+                     onChange={this.handleChange}
+                     name="nickName"
+                     id="nickName" 
+                     value={this.state.nickName}
+                     />
                 </div>
 
-                <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
+                <div className="form-group">
+                    <label htmlFor="description">Description:</label><br/>
+                    <input 
+                    onChange={this.handleChange}
+                    name="description" 
+                    id="description" 
+                    value={this.state.description}
+
+                    />
+                </div>
+
+                    <div data-testid="errorAlert" className="alert alert-danger" role="alert">
+                    Error: 
+                    </div>
                 <button>Submit Smurf</button>
             </form>
         </section>);
